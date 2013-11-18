@@ -1,0 +1,34 @@
+<h1>Create New Friend Circle</h1>
+
+<%= flash[:error] %>
+
+<form action="<%= friends_circles_url %>" method="post">
+
+  <input type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+
+  <p><input type="text" placeholder= "Name" name="friends_circle[name]"></p>
+
+  <p><input type="hidden"
+      value="<%= current_user.id %>"
+      name="friends_circle[user_id]"></p>
+
+  <% @all_users.each do |user| %>
+    <p>
+      <% next if user == current_user  %>
+      <% html_id = "friend_circle_memberships_user_id_#{user.id}" %>
+          <input
+            type="checkbox"
+            name="friend_circle_memberships[user_id][]"
+            value="<%= user.id %>"
+            id="<%= html_id %>">
+          <label for="<%= html_id %>">
+            <%= user.email %>
+          </label>
+    </p>
+  <% end %>
+
+  <p><input type="submit" value="Create Friends Circle"></p>
+
+</form>

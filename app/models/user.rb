@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password
   attr_reader :password
 
-  before_validation(on: :create){ self.session_token = User.generate_session_token! }
+  before_validation(on: :create) do
+    self.session_token = User.generate_session_token!
+    self.auth_token = User.generate_auth_token!
+  end
 
   validates :email, :password, :session_token, presence: true
   validates :email, uniqueness: true
@@ -18,7 +21,26 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many(
+    :friends_circle_memberships,
+    class_name: "FriendCircleMembership",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :circles,
+    through: :friends_circle_memberships,
+    source: :friends_circle
+  )
+
+
+
   def self.generate_session_token!
+    SecureRandom::urlsafe_base64(16)
+  end
+
+  def self.generate_auth_token!
     SecureRandom::urlsafe_base64(16)
   end
 

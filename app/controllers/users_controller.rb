@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def password
-    @user = User.find(params[:id])
+    @user = User.find_by_auth_token(params[:auth_token])
 
     render :password
   end

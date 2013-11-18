@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def password_reset_email(user)
     @user = user
-    @url = password_user_url(user.id)
+    @url = password_users_url + "?auth_token=#{user.auth_token}"
     mail(to: user.email, subject: "Reset Password")
   end
 

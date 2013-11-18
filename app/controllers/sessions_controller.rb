@@ -14,8 +14,12 @@ class SessionsController < ApplicationController
 
       redirect_to new_session_url
     end
+  end
 
-    # fail
+  def destroy
+    session[:session_token] = @current_user = nil
+
+    redirect_to new_session_url
   end
 
 end

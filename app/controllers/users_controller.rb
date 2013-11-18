@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render text: "right place"
+    render :show
   end
 
 end

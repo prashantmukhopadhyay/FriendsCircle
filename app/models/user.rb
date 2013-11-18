@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :password, length: { minimum: 5, too_short: "too short" }
 
+
+  has_many(
+    :friends_circles,
+    class_name: "FriendsCircle",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
   def self.generate_session_token!
     SecureRandom::urlsafe_base64(16)
   end

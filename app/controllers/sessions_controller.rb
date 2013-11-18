@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  skip_before_filter :require_login, only: [:new, :create, :email, :send_email]
+
   def new
     render :new
   end

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  skip_before_filter :require_login, only: [:new, :create, :update, :password]
+
+
   def new
     render :new
   end
@@ -22,6 +25,7 @@ class UsersController < ApplicationController
 
   def password
     @user = User.find(params[:id])
+
     render :password
   end
 
@@ -31,6 +35,7 @@ class UsersController < ApplicationController
       redirect_to new_session_url
     else
       flash[:error] = "invalid password choice"
+
       redirect_to password_user_url(params[:id])
     end
   end

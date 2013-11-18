@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118141643) do
+ActiveRecord::Schema.define(:version => 20131118164628) do
+
+  create_table "friends_circles", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "friends_circles", ["user_id"], :name => "index_friends_circles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",           :null => false

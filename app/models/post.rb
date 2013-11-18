@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
   )
 
   has_many(
-    :links,
+    :links, inverse_of: :post,
     class_name: "Link",
     foreign_key: :post_id,
     primary_key: :id

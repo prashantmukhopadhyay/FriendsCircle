@@ -8,6 +8,8 @@ FriendCircle::Application.routes.draw do
 
   resources :friends_circles, only: ["new", "index", "create"]
 
+  resources :posts, only: ["new", "create", "destroy"]
+
   resource :session, only: ["new", "create", "destroy"] do
     collection do
       get "email"

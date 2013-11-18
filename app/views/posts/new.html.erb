@@ -1,0 +1,29 @@
+<h1>New Post</h1>
+
+<%= flash[:error] %>
+
+<form action="<%= posts_url %>" method="post">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <textarea name="post[body]">Body of post</textarea>
+
+  <input type="hidden" name="post[poster_id]" value="<%= current_user.id %>">
+
+  <p><label>Link 1
+    <input type="text" name="links[1][url]">
+  </label></p>
+
+  <p><label>Link 2
+    <input type="text" name="links[2][url]">
+  </label></p>
+
+  <p><label>Link 3
+    <input type="text" name="links[3][url]">
+  </label></p>
+
+  <p><input type="submit" value="Create Post"></p>
+
+</form>

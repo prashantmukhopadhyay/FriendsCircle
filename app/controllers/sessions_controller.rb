@@ -22,4 +22,15 @@ class SessionsController < ApplicationController
     redirect_to new_session_url
   end
 
+  def email
+    render :email
+  end
+
+  def send_email
+    u = User.find_by_email(params[:user][:email])
+    msg = UserMailer.password_reset_email(u)
+    msg.deliver!
+    redirect_to new_session_url
+  end
+
 end

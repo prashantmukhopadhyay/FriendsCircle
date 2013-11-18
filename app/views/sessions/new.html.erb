@@ -12,6 +12,8 @@
 
   <p><input type="password" placeholder= "password" name="user[password]"></p>
 
-  <p><input type="submit" value="Login">
+  <p><input type="submit" value="Login"></p>
 
 </form>
+
+<p><%= button_to "Forgot Password",  email_session_url, method: :get %></p>

@@ -1,7 +1,17 @@
 FriendCircle::Application.routes.draw do
 
-  resources :users
-  resource :session, only: ["new", "create", "destroy"]
+  resources :users do
+    member do
+      get "password"
+    end
+  end
+
+  resource :session, only: ["new", "create", "destroy"] do
+    collection do
+      get "email"
+      get "send_email"
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -23,4 +23,12 @@ class Post < ActiveRecord::Base
     source: :recipient
   )
 
+  has_many(
+    :links,
+    class_name: "Link",
+    foreign_key: :post_id,
+    primary_key: :id
+  )
+
+
 end

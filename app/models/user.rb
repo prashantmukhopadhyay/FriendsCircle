@@ -34,6 +34,26 @@ class User < ActiveRecord::Base
     source: :friends_circle
   )
 
+  has_many(
+    :posts,
+    class_name: "Post",
+    foreign_key: :poster_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :post_shares,
+    class_name: "PostShare",
+    foreign_key: :recipient_id,
+    primary_key: :id
+  )
+
+  has_many(
+    :received_posts,
+    through: :post_shares,
+    source: :received_post
+  )
+
 
 
   def self.generate_session_token!

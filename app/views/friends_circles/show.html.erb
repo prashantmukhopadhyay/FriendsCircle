@@ -1,0 +1,5 @@
+<% @friends_circle.members.each do |member| %>
+  <p><%= member.email %></p>
+<% end %>
+
+<%= link_to "Edit Friend Circle", edit_friends_circle_url(@friends_circle.id) %>

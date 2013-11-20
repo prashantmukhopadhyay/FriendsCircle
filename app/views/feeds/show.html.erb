@@ -1,0 +1,5 @@
+<h1><%= current_user.email %>'s Feed!!!! YAY!</h1>
+
+<% @all_posts.each do |post| %>
+  <p><%= post %></p>
+<% end %>

@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 
   def create
     @new_post = Post.new(params[:post])
+    fail
+    @new_post.post_shares
 
     params[:links].each do |key, value|
       @new_post.links.new(value) unless value.values.last.blank?

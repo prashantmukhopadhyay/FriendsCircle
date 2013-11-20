@@ -6,7 +6,7 @@ FriendCircle::Application.routes.draw do
     end
   end
 
-  resources :friends_circles, only: ["new", "index", "create"]
+  resources :friends_circles
 
   resources :posts, only: ["new", "create", "destroy"]
 
@@ -16,6 +16,8 @@ FriendCircle::Application.routes.draw do
       get "send_email"
     end
   end
+
+  resource :feed, only: ["show"]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
